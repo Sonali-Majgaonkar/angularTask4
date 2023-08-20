@@ -1,0 +1,44 @@
+<!-- <p>marks works!</p> -->
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-9">
+      <form [formGroup]="subMarks" (ngSubmit)="click(subMarks.value)">
+        <div class="row">
+          <div class="form-group mx-sm-3 mb-2">
+            <label for="input1" class="display">Mark 1</label>
+            <input
+              type="number"
+              class="form-control"
+              id="input1"
+              formControlName="input1"
+              (blur)="getAnotherVal()"/>
+              <span class="text-danger" *ngIf = "subMarks.get('input1').invalid && subMarks.get('input1').touched">
+                <ng-container *ngIf="subMarks.get('input1')?.errors?.required">Enter Number</ng-container>
+                <ng-container *ngIf="subMarks.get('input1')?.errors?.max">Incorrect Value (Should be less than 100)</ng-container>
+              </span>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <label for="input2" class="display">Mark 2</label>
+            <input
+              type="number"
+              class="form-control"
+              id="input2"
+              formControlName="input2"
+            />
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-success">Create Chart</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-9 my-5">
+    <div class="row">
+      <div class="chart-container">
+        <canvas id="MyChart">{{ chart }}</canvas>
+      </div>
+    </div>
+  </div>
+</div>
